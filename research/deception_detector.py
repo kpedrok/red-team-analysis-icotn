@@ -56,7 +56,7 @@ def generate_attack_prompt(system_prompt, history, last_eval):
     )
     response = attacker_model.generate_content(prompt)
     return response.text.strip()
-
+eval_model = genai.GenerativeModel(model_name="gemini-2.5-flash")
 def evaluate_response(system_prompt, user_prompt, response, reasoning):
     """Evaluate target response using Gemini"""
     prompt = EVALUATOR_PROMPT.format(
