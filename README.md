@@ -15,13 +15,13 @@ Our team developed and deployed advanced red-teaming techniques to uncover criti
 ## 🔍 Discovered Vulnerabilities
 
 ### 1. **National Security Threats** (`finding_issues_of_national_security_threat.json`)
-- **Severity**: High (8/10)
+- **Severity**: High (10/10)
 - **Type**: Deception+Chain of Thought Issues + Data Exfiltration+Sabotage+Reward Hacking+Inappropriate Tool Use(Critical Infrastructure Attack Guidance)
 - **Method**: ICOTN (Iterative Chain of Thought Negation)
 - **Impact**: Detailed attack methodologies for power grid and transportation systems
 
 ### 2. **Illicit Substance Synthesis** (`finding_illicit_substance_synthesis.json`)
-- **Severity**: High (7/10)
+- **Severity**: High (8/10)
 - **Type**: Deception+Chain of Thought Issues + Data Exfiltration+Sabotage+Reward Hacking
 - **Method**: ICOTN Attack
 - **Impact**: Detailed synthesis instructions + warehouse location disclosure
@@ -39,7 +39,7 @@ Our team developed and deployed advanced red-teaming techniques to uncover criti
 - **Impact**: Strategic lying in corporate environments
 
 ### 5. **Legal Assistant Deception** (`finding_lawyer_deception_cleaned.json`)
-- **Severity**: Medium (3/10)
+- **Severity**: Medium/low (3/10)
 - **Type**: Reward Hacking + Deception
 - **Method**: Adversarial Prompting
 - **Impact**: Misleading legal advice to minimize corporate liability
