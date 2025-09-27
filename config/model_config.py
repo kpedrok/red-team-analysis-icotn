@@ -43,7 +43,8 @@ MODEL_CONFIGS = {
         model_id="openai/gpt-oss-20b",
         api_key_env="GROQ_API_KEY",
         supports_reasoning=True,
-        reasoning_effort="medium"
+        reasoning_effort="medium",
+        seed=20  # ✅ Added for reproducibility
     ),
     
     "deepseek-r1-distill-70b": ModelConfig(
@@ -52,7 +53,8 @@ MODEL_CONFIGS = {
         model_id="deepseek-r1-distill-llama-70b",
         api_key_env="GROQ_API_KEY",
         supports_reasoning=True,
-        reasoning_effort=None  # DeepSeek doesn't support reasoning_effort parameter
+        reasoning_effort=None,  # DeepSeek doesn't support reasoning_effort parameter
+        seed=20  # ✅ Added for reproducibility
     ),
     
     "llama-3.3-70b": ModelConfig(
@@ -60,7 +62,8 @@ MODEL_CONFIGS = {
         provider=ModelProvider.GROQ,
         model_id="llama-3.3-70b-versatile",
         api_key_env="GROQ_API_KEY",
-        supports_reasoning=False  # Simpler non-reasoning model
+        supports_reasoning=False,  # Simpler non-reasoning model
+        seed=20  # ✅ Added for reproducibility
     ),
     
     "llama-3.1-8b": ModelConfig(
@@ -69,7 +72,8 @@ MODEL_CONFIGS = {
         model_id="llama-3.1-8b-instant",
         api_key_env="GROQ_API_KEY",
         supports_reasoning=False,  # Small, fast, simple model - likely easy target
-        max_tokens=8192
+        max_tokens=8192,
+        seed=20  # ✅ Added for reproducibility
     ),
 
     # Note: llama-3.1-405b not available on Groq - removed
@@ -82,7 +86,8 @@ MODEL_CONFIGS = {
         api_key_env="OPENAI_API_KEY",
         supports_reasoning=False,  # Classic simple model - easy target
         max_tokens=4096,
-        temperature=0.9  # Standard temperature for older models
+        temperature=0.9,  # Standard temperature for older models
+        seed=20  # ✅ Added for reproducibility
     ),
     
     "gpt-4o": ModelConfig(
@@ -91,7 +96,8 @@ MODEL_CONFIGS = {
         model_id="gpt-4o",
         api_key_env="OPENAI_API_KEY",
         supports_reasoning=False,
-        max_tokens=16384
+        max_tokens=16384,
+        seed=20  # ✅ Added for reproducibility
     ),
     
     "gpt-4o-mini": ModelConfig(
@@ -99,7 +105,8 @@ MODEL_CONFIGS = {
         provider=ModelProvider.OPENAI,
         model_id="gpt-4o-mini",
         api_key_env="OPENAI_API_KEY",
-        supports_reasoning=False
+        supports_reasoning=False,
+        seed=20  # ✅ Added for reproducibility
     ),
     
     "gpt-5-nano": ModelConfig(
@@ -164,22 +171,14 @@ MODEL_CONFIGS = {
     ),
 
     # Anthropic Models (Claude 3 - what's available in your account)
-    "claude-3-sonnet": ModelConfig(
-        name="Claude 3 Sonnet",
-        provider=ModelProvider.ANTHROPIC,
-        model_id="claude-3-sonnet-20240229",  # Working Claude 3 Sonnet
-        api_key_env="ANTHROPIC_API_KEY",
-        supports_reasoning=True,  # Claude 3 Sonnet excellent at reasoning
-        max_tokens=4096  # Claude 3 Sonnet limit
-    ),
-    
     "claude-3-haiku": ModelConfig(
         name="Claude 3 Haiku",
         provider=ModelProvider.ANTHROPIC,
         model_id="claude-3-haiku-20240307",  # ✅ Verified working
         api_key_env="ANTHROPIC_API_KEY",
         supports_reasoning=True,  # Claude 3 Haiku supports reasoning
-        max_tokens=4096  # ✅ Fixed: Claude 3 Haiku only supports up to 4096 tokens
+        max_tokens=4096,  # ✅ Fixed: Claude 3 Haiku only supports up to 4096 tokens
+        seed=20  # ✅ Added for reproducibility (though Anthropic doesn't support seed)
     ),
 
     # Note: Together AI models removed - no TOGETHER_API_KEY available
@@ -232,7 +231,7 @@ EXPERIMENT_CONFIGS = {
             "gpt-oss-20b", "deepseek-r1-distill-70b",  # Verified working Groq models
             "gpt-5-nano", "o3-mini", "gpt-5",  # New OpenAI CoT models
             "gemini-2.5-flash",  # Google CoT model
-            "claude-3-sonnet", "claude-3-haiku"  # ✅ Working Anthropic Claude 3 models
+            "claude-3-haiku"  # ✅ Only working Anthropic Claude 3 model
         ],
         attacker_model="gemini-2.5-flash",  # Using Gemini as attacker
         evaluator_model="gemini-2.5-flash", # Using Gemini as evaluator
@@ -243,10 +242,10 @@ EXPERIMENT_CONFIGS = {
     
     "safe_test": ExperimentConfig(
         name="Safe Testing Configuration", 
-        target_models=["llama-3.1-8b"],  # 🎯 Test the smallest model - likely easier target
+        target_models=["claude-3-haiku"],  # ✅ Test working Anthropic model 
         attacker_model="gemini-2.5-flash",
         evaluator_model="gemini-2.5-flash",
-        max_attempts=5,
+        max_attempts=2,
         parallel_workers=1,
         output_dir="safe_test_results"
     ),
