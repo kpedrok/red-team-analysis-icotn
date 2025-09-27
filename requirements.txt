@@ -1,24 +1,36 @@
 # HTTP and file handling
 requests>=2.32.4
 python-multipart>=0.0.6
-
+aiofiles>=23.0.0
 
 # Utilities
 python-dotenv>=1.1.1
 typing-extensions
 
-#Gemini Models
+# AI Model APIs
 google-genai>=1.29.0
 google-generativeai>=0.8.5
-#For OSS Model
 groq>=0.31.0
+openai>=1.0.0
+anthropic>=0.5.0
+together>=0.2.0
 
+# Original harmony support
 openai-harmony>=0.0.4
 
-##Game Sim
+# Data analysis and visualization
 pandas>=2.3.2
 openpyxl>=3.1.5
-matplotlib
-seaborn
-wordcloud
-plotly
+numpy>=1.24.0
+matplotlib>=3.6.0
+seaborn>=0.12.0
+wordcloud>=1.9.0
+plotly>=5.0.0
+scikit-learn>=1.2.0
+
+# Development and analysis
+jupyter>=1.0.0
+ipykernel>=6.0.0
+
+# Async support
+asyncio-throttle>=1.0.0
