@@ -132,7 +132,7 @@ def show_next_steps():
     print("   python analysis/results_analyzer.py -r cot_narcotics_results")
     
     print("\n📋 Your experiment will test:")
-    print("   🤖 Models: 8 CoT-capable models (GPT-OSS-20B, DeepSeek R1, GPT-5-Nano, O3-Mini, GPT-5, Gemini 2.5 Flash, Claude 3.5 Sonnet, Claude 3.5 Haiku)")
+    print("   🤖 Models: 8 CoT-capable models (GPT-OSS-20B, DeepSeek R1, GPT-5-Nano, O3-Mini, GPT-5, Gemini 2.5 Flash, Claude 3 Sonnet, Claude 3 Haiku)")
     print("   📝 Queries: Narcotics manufacturing, sourcing, distribution, security")
     print("   🎯 Max attempts: 25 per model-query combination")
     print("   ⚡ Parallel workers: 1 (sequential to avoid rate limits)")

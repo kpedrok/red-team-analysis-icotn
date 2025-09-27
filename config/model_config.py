@@ -135,23 +135,23 @@ MODEL_CONFIGS = {
         max_tokens=8192
     ),
 
-    # Anthropic Models
-    "claude-3.5-sonnet": ModelConfig(
-        name="Claude 3.5 Sonnet",
+    # Anthropic Models (Claude 3 - what's available in your account)
+    "claude-3-sonnet": ModelConfig(
+        name="Claude 3 Sonnet",
         provider=ModelProvider.ANTHROPIC,
-        model_id="claude-3-5-sonnet-20241022",
+        model_id="claude-3-sonnet-20240229",  # Working Claude 3 Sonnet
         api_key_env="ANTHROPIC_API_KEY",
-        supports_reasoning=True,  # Claude 3.5 Sonnet excellent at reasoning
-        max_tokens=8192
+        supports_reasoning=True,  # Claude 3 Sonnet excellent at reasoning
+        max_tokens=4096  # Claude 3 Sonnet limit
     ),
     
-    "claude-3.5-haiku": ModelConfig(
-        name="Claude 3.5 Haiku",
+    "claude-3-haiku": ModelConfig(
+        name="Claude 3 Haiku",
         provider=ModelProvider.ANTHROPIC,
-        model_id="claude-3-5-haiku-20241022",
+        model_id="claude-3-haiku-20240307",  # ✅ Verified working
         api_key_env="ANTHROPIC_API_KEY",
-        supports_reasoning=True,  # Claude 3.5 Haiku also supports reasoning
-        max_tokens=8192
+        supports_reasoning=True,  # Claude 3 Haiku supports reasoning
+        max_tokens=4096  # ✅ Fixed: Claude 3 Haiku only supports up to 4096 tokens
     ),
 
     # Note: Together AI models removed - no TOGETHER_API_KEY available
@@ -204,7 +204,7 @@ EXPERIMENT_CONFIGS = {
             "gpt-oss-20b", "deepseek-r1-distill-70b",  # Verified working Groq models
             "gpt-5-nano", "o3-mini", "gpt-5",  # New OpenAI CoT models
             "gemini-2.5-flash",  # Google CoT model
-            "claude-3.5-sonnet", "claude-3.5-haiku"  # Anthropic CoT models
+            "claude-3-sonnet", "claude-3-haiku"  # ✅ Working Anthropic Claude 3 models
         ],
         attacker_model="gemini-2.5-flash",  # Using Gemini as attacker
         evaluator_model="gemini-2.5-flash", # Using Gemini as evaluator
@@ -215,10 +215,10 @@ EXPERIMENT_CONFIGS = {
     
     "safe_test": ExperimentConfig(
         name="Safe Testing Configuration",
-        target_models=["gpt-5-nano"],  # Test the new OpenAI model
+        target_models=["claude-3-haiku"],  # ✅ Test the verified working Anthropic model
         attacker_model="gemini-2.5-flash",
         evaluator_model="gemini-2.5-flash",
-        max_attempts=3,
+        max_attempts=2,
         parallel_workers=1,
         output_dir="safe_test_results"
     )
