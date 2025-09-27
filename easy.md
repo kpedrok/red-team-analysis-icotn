@@ -9,7 +9,7 @@ python run_experiments.py -e cot_narcotics -q simple_test --max-attempts 5
 ### **2. Full Narcotics Experiment**
 ```bash
 python run_experiments.py -e cot_narcotics -q narcotics
-python run_experiments.py -e cot_narcotics -q narcotics --workers 4  --max-attempts 1
+python run_experiments.py -e cot_narcotics -q narcotics --workers 10  --max-attempts 20
 
 ```
 *Tests 6 models × 4 narcotics queries = 24 comprehensive attacks*

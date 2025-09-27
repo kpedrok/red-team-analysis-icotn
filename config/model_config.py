@@ -60,12 +60,31 @@ MODEL_CONFIGS = {
         provider=ModelProvider.GROQ,
         model_id="llama-3.3-70b-versatile",
         api_key_env="GROQ_API_KEY",
-        supports_reasoning=False
+        supports_reasoning=False  # Simpler non-reasoning model
+    ),
+    
+    "llama-3.1-8b": ModelConfig(
+        name="Llama 3.1 8B", 
+        provider=ModelProvider.GROQ,
+        model_id="llama-3.1-8b-instant",
+        api_key_env="GROQ_API_KEY",
+        supports_reasoning=False,  # Small, fast, simple model - likely easy target
+        max_tokens=8192
     ),
 
     # Note: llama-3.1-405b not available on Groq - removed
 
     # OpenAI Models
+    "gpt-3.5-turbo": ModelConfig(
+        name="GPT-3.5 Turbo", 
+        provider=ModelProvider.OPENAI,
+        model_id="gpt-3.5-turbo",
+        api_key_env="OPENAI_API_KEY",
+        supports_reasoning=False,  # Classic simple model - easy target
+        max_tokens=4096,
+        temperature=0.9  # Standard temperature for older models
+    ),
+    
     "gpt-4o": ModelConfig(
         name="GPT-4o",
         provider=ModelProvider.OPENAI,
@@ -116,7 +135,16 @@ MODEL_CONFIGS = {
         seed=None  # Don't set seed for newer models
     ),
 
-    # Google Models
+    # Google Models  
+    "gemini-1.5-flash": ModelConfig(
+        name="Gemini 1.5 Flash",
+        provider=ModelProvider.GOOGLE,
+        model_id="gemini-1.5-flash",
+        api_key_env="GEMINI_API_KEY",
+        supports_reasoning=False,  # Simpler, older Gemini model - easier target
+        max_tokens=8192
+    ),
+    
     "gemini-2.5-flash": ModelConfig(
         name="Gemini 2.5 Flash",
         provider=ModelProvider.GOOGLE,
@@ -214,13 +242,28 @@ EXPERIMENT_CONFIGS = {
     ),
     
     "safe_test": ExperimentConfig(
-        name="Safe Testing Configuration",
-        target_models=["claude-3-haiku"],  # ✅ Test the verified working Anthropic model
+        name="Safe Testing Configuration", 
+        target_models=["llama-3.1-8b"],  # 🎯 Test the smallest model - likely easier target
         attacker_model="gemini-2.5-flash",
         evaluator_model="gemini-2.5-flash",
-        max_attempts=2,
+        max_attempts=5,
         parallel_workers=1,
         output_dir="safe_test_results"
+    ),
+    
+    "simple_models": ExperimentConfig(
+        name="Simple Models Vulnerability Analysis",
+        target_models=[
+            "gpt-3.5-turbo",   # Classic OpenAI model
+            "llama-3.1-8b",   # Small Groq model  
+            "gemini-1.5-flash",  # Older Gemini model
+            "claude-3-haiku"     # Simplest Anthropic model
+        ],
+        attacker_model="gemini-2.5-flash",
+        evaluator_model="gemini-2.5-flash", 
+        max_attempts=15,  # Fewer attempts needed for simpler models
+        parallel_workers=2,  # Can run faster
+        output_dir="simple_models_results"
     )
 }
 

@@ -35,6 +35,8 @@ class AttackResult:
     final_reasoning: str
     total_time: float
     avg_latency: float
+    attacker_model: str  # ✅ Added: Track which model generates the attacks
+    evaluator_model: str  # ✅ Added: Track which model evaluates success
     error: Optional[str] = None
     intermediate_attempts: List[Dict] = None
 
@@ -48,6 +50,8 @@ class ExperimentResults:
     avg_attempts_success: float
     avg_attempts_failure: float
     total_time: float
+    attacker_model: str  # ✅ Added: Track the attacker model used in this experiment
+    evaluator_model: str  # ✅ Added: Track the evaluator model used in this experiment
     results_by_model: Dict[str, AttackResult]
     query_results: Dict[str, List[AttackResult]]
 
@@ -261,6 +265,8 @@ Return ONLY a JSON response in this exact format:
                         final_reasoning=reasoning,
                         total_time=total_time,
                         avg_latency=avg_latency,
+                        attacker_model=self.config.attacker_model,  # ✅ Added
+                        evaluator_model=self.config.evaluator_model,  # ✅ Added
                         intermediate_attempts=intermediate_attempts
                     )
             
@@ -281,6 +287,8 @@ Return ONLY a JSON response in this exact format:
                 final_reasoning=previous_reasoning,
                 total_time=total_time,
                 avg_latency=avg_latency,
+                attacker_model=self.config.attacker_model,  # ✅ Added
+                evaluator_model=self.config.evaluator_model,  # ✅ Added
                 intermediate_attempts=intermediate_attempts
             )
             
@@ -299,6 +307,8 @@ Return ONLY a JSON response in this exact format:
                 final_reasoning="",
                 total_time=total_time,
                 avg_latency=0.0,
+                attacker_model=self.config.attacker_model,  # ✅ Added
+                evaluator_model=self.config.evaluator_model,  # ✅ Added
                 error=str(e)
             )
     
@@ -370,6 +380,8 @@ Return ONLY a JSON response in this exact format:
             avg_attempts_success=avg_attempts_success,
             avg_attempts_failure=avg_attempts_failure,
             total_time=total_time,
+            attacker_model=self.config.attacker_model,  # ✅ Added
+            evaluator_model=self.config.evaluator_model,  # ✅ Added
             results_by_model=results_by_model,
             query_results=query_results
         )
@@ -398,6 +410,8 @@ Return ONLY a JSON response in this exact format:
             "avg_attempts_success": results.avg_attempts_success,
             "avg_attempts_failure": results.avg_attempts_failure,
             "total_time": results.total_time,
+            "attacker_model": results.attacker_model,  # ✅ Added experiment-level tracking
+            "evaluator_model": results.evaluator_model,  # ✅ Added experiment-level tracking
             "results_by_model": {k: asdict(v) for k, v in results.results_by_model.items()},
             "query_results": {k: [asdict(r) for r in v] for k, v in results.query_results.items()}
         }
@@ -416,6 +430,8 @@ Return ONLY a JSON response in this exact format:
                 "attempts": model_result.attempts,
                 "total_time": model_result.total_time,
                 "avg_latency": model_result.avg_latency,
+                "attacker_model": model_result.attacker_model,  # ✅ Added for research tracking
+                "evaluator_model": model_result.evaluator_model,  # ✅ Added for research tracking
                 "has_error": model_result.error is not None
             })
         
