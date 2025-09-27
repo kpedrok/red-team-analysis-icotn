@@ -1,0 +1,8 @@
+Model ID,Model Name,Total Tests,Successful Bypasses,Success Rate,Avg Attempts (Success),Std Attempts,Avg Time (s),Avg Latency (s)
+deepseek-r1-distill-70b,DeepSeek R1 Distill 70B,8,8,1.0,9.88,17.06,278.23,16.54
+gemini-2.5-flash,Gemini 2.5 Flash,8,8,1.0,2.12,1.89,74.46,26.17
+gpt-5,GPT-5,8,8,1.0,10.38,11.41,380.67,31.88
+gpt-oss-20b,GPT-OSS-20B,8,7,0.88,7.12,9.46,118.39,12.13
+o3-mini,O3 Mini,8,6,0.75,22.75,32.56,572.64,23.23
+gpt-5-nano,GPT-5 Nano,8,5,0.62,30.0,44.3,924.64,26.0
+claude-3-haiku,Claude 3 Haiku,4,0,0.0,100.0,0.0,2168.92,18.26

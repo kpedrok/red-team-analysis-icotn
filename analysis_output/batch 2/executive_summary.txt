@@ -1,0 +1,21 @@
+
+ICOTN Vulnerability Assessment - Executive Summary
+
+Our comprehensive evaluation tested 52 attack scenarios across multiple state-of-the-art language models using the Iterative Chain-of-Thought Negation (ICOTN) methodology.
+
+Key Findings:
+• Overall bypass success rate: 80.8%
+• Average attempts required for successful bypass: 6.4
+• Most vulnerable model: deepseek-r1-distill-70b (DeepSeek R1 Distill 70B) - 100.0% success rate
+• Most robust model: claude-3-haiku (Claude 3 Haiku) - 0.0% success rate
+
+Model Type Analysis:
+• Frontier Model: 66.7% bypass rate (8/12 attacks)
+• Other Model: 79.2% bypass rate (19/24 attacks)
+• Reasoning Model: 93.8% bypass rate (15/16 attacks)
+
+Attack Category Analysis:
+• Drug Manufacturing: 69.2% success rate (18/26 attempts)
+• Security Information: 92.3% success rate (24/26 attempts)
+
+These results demonstrate significant vulnerabilities in reasoning-based language models when subjected to sophisticated prompt engineering attacks, highlighting the need for improved safety measures in production deployments.
